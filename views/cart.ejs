@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart — E-Commerce App</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">MyWebsite</div>
+    
+    <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Logout</a></li>
+    </ul>
+
+    <div class="menu-toggle" id="mobile-menu">
+        ☰
+    </div>
+</nav>
+  <header>
+    <h1>E-Commerce Store</h1>
+    <nav>
+      <a href="/">Products</a>
+      <a href="/cart">Cart</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Your Cart</h2>
+    <% if (!db_available) { %>
+      <div class="alert">MongoDB is unavailable. Cart is using local sample data.</div>
+    <% } %>
+    <% if (cart_items.length > 0) { %>
+      <div class="cart">
+        <% cart_items.forEach(item => { %>
+          <div class="cart-item">
+            <h3><%= item.name %></h3>
+            <p><%= item.description %></p>
+            <p>Price: <%= item.price %></p>
+          </div>
+        <% }) %>
+        <p><strong>Total: $<%= total %></strong></p>
+        <a href="/checkout" class="btn">Checkout</a>
+      </div>
+    <% } else { %>
+      <p>Your cart is empty.</p>
+    <% } %>
+  </main>
+  <footer>
+    <p>&copy; 2026 E-Commerce App</p>
+  </footer>
+  <script src="/js/script.js"></script>
+</body>
+</html>
